@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://d3js.org/d3.v2.min.js"></script>
+<script>
+
+// converts spotipy into format suitable for radar charts
+d3.csv("data/top_spotify_tracks_2017.csv", function(array) {
+   var row
+   var newArray = []
+   for(i=0;i<array.length;i++){
+      row = {
+         axis: "danceability",
+         value: +array[i].danceability
+      }
+      newArray.push(row)
+      row = {
+         axis: "energy",
+         value: +array[i].energy
+      }
+      newArray.push(row)
+      row = {
+         axis: "key",
+         value: +array[i].key
+      }
+      newArray.push(row)
+      row = {
+         axis: "loudness",
+         value: +array[i].loudness
+      }
+      newArray.push(row)
+      row = {
+         axis: "mode",
+         value: +array[i].mode
+      }
+      newArray.push(row)
+      row = {
+         axis: "speechiness",
+         value: +array[i].speechiness
+      }
+      newArray.push(row)
+      row = {
+         axis: "acousticness",
+         value: +array[i].acousticness
+      }
+      newArray.push(row)
+      row = {
+         axis: "instrumentalness",
+         value: +array[i].instrumentalness
+      }
+      newArray.push(row)
+      row = {
+         axis: "liveness",
+         value: +array[i].liveness
+      }
+      newArray.push(row)
+      row = {
+         axis: "valence",
+         value: +array[i].valence
+      }
+      newArray.push(row)
+      row = {
+         axis: "tempo",
+         value: +array[i].tempo
+      }
+      newArray.push(row)
+      row = {
+         axis: "duration_ms",
+         value: +array[i].duration_ms
+      }
+      newArray.push(row)
+   }
+   console.log(newArray)
+}) // end d3.csv()
+</script>
+
+</body>
+</html>
