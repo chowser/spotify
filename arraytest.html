@@ -25,8 +25,9 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(array) {
       }
       newArray.push(row)
       row = {
+         // loudness is negative, make positive
          axis: "loudness",
-         value: +array[i].loudness
+         value: -array[i].loudness
       }
       newArray.push(row)
       row = {
