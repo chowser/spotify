@@ -31,7 +31,7 @@ function RadarChart(id, data, options) {
 
 	//If the supplied maxValue is smaller than the actual one, replace by the max in the data
 	var maxValue = Math.max(cfg.maxValue, d3.max(data, function(i){return d3.max(i.map(function(o){return o.value;}))}));
-   console.log(maxValue)
+
 	var allAxis = (data[0].map(function(i, j){return i.axis})),	//Names of each axis
 		total = allAxis.length,					//The number of different axes
 		radius = Math.min(cfg.w/2, cfg.h/2), 	//Radius of the outermost circle
@@ -174,7 +174,7 @@ function RadarChart(id, data, options) {
 			d3.selectAll(".radarArea")
 				.transition().duration(200)
 				.style("fill-opacity", cfg.opacityArea);
-		});
+		})
 
 	//Create the outlines
 	blobWrapper.append("path")
@@ -194,7 +194,16 @@ function RadarChart(id, data, options) {
 		.attr("cx", function(d,i){ return rScale(d.value) * Math.cos(angleSlice*i - Math.PI/2); })
 		.attr("cy", function(d,i){ return rScale(d.value) * Math.sin(angleSlice*i - Math.PI/2); })
 		.style("fill", function(d,i,j) { return cfg.color(j); })
-		.style("fill-opacity", 0.8);
+		.style("fill-opacity", 0.8)
+
+// append title
+		blobWrapper.selectAll(".radarArea")
+			.data(function(d,i){
+				return [d]
+			}).append("title")
+			.text(function(d,i){
+				return "Title: " + [d][0][0].title + "\nArtist: " + [d][0][0].artist
+			})
 
 	/////////////////////////////////////////////////////////
 	//////// Append invisible circles for tooltip ///////////
@@ -230,7 +239,7 @@ function RadarChart(id, data, options) {
 		.on("mouseout", function(){
 			tooltip.transition().duration(200)
 				.style("opacity", 0);
-		});
+		})
 
 	//Set up the small tooltip for when you hover over a circle
 	var tooltip = g.append("text")

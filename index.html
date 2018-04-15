@@ -14,26 +14,28 @@ http://bl.ocks.org/nbremer/21746a9668ffdf6d8242
 
    <title>Hello, world!</title>
 
+   <!-- Google fonts -->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+   <!-- D3.js -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+   <script src="radarChart.js"></script>
 </head>
 <body>
    <div class="radarChart"></div>
 </body>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- d3 code-->
 
-<!-- d3 -->
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="radarChart.js"></script>
 <script type="text/javascript">
+var w = 500,
+	 h = 500;
 var convertedData = {}
 d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
    data = data.map(function(d){
       return d
    })
-   console.log(data)
    var row
    var newArray = []
 
@@ -187,6 +189,7 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
       color: color
    };
    //Call function to draw the Radar chart
+
    RadarChart(".radarChart", convertedData, radarChartOptions);
 }) // end d3.csv()
 
