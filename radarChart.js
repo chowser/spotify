@@ -205,6 +205,11 @@ function RadarChart(id, data, options) {
 				return "Title: " + [d][0][0].title + "\nArtist: " + [d][0][0].artist
 			})
 
+		//Set up the small tooltip for when you hover over a circle
+		var tooltip = g.append("text")
+			.attr("class", "tooltip")
+			.style("opacity", 0);
+
 	/////////////////////////////////////////////////////////
 	//////// Append invisible circles for tooltip ///////////
 	/////////////////////////////////////////////////////////

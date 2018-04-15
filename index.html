@@ -40,7 +40,7 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
    var newArray = []
 
    // create remapped array that will work with radarChart.js
-   for(i=0;i<5;i++){
+   for(i=0;i<data.length;i++){
       entry = [
          {
             title: data[i].name,
