@@ -33,13 +33,16 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
    data = data.map(function(d){
       return d
    })
-   console.log(d3.max(data, function(d) { return +d.danceability} ))
+   console.log(data)
    var row
    var newArray = []
 
+   // create remapped array that will work with radarChart.js
    for(i=0;i<5;i++){
       entry = [
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "danceability",
             // normalize values to scale from 0 to 1
             value: +data[i].danceability/d3.max(data, function(d) {
@@ -47,6 +50,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "energy",
             // normalize values to scale from 0 to 1
             value: +data[i].energy/d3.max(data, function(d){
@@ -54,6 +59,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "key",
             // normalize values to scale from 0 to 1
             value: +data[i].key/d3.max(data, function(d){
@@ -61,6 +68,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "loudness",
             // normalize values to scale from 0 to 1
             // loudness is negative, convert to positive
@@ -69,6 +78,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "mode",
             // normalize values to scale from 0 to 1
             value: +data[i].mode/d3.max(data, function(d){
@@ -76,6 +87,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "speechiness",
             // normalize values to scale from 0 to 1
             value: +data[i].speechiness/d3.max(data, function(d){
@@ -83,6 +96,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "acousticness",
             // normalize values to scale from 0 to 1
             value: +data[i].acousticness/d3.max(data, function(d){
@@ -90,6 +105,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "instrumentalness",
             // normalize values to scale from 0 to 1
             value: +data[i].instrumentalness/d3.max(data, function(d){
@@ -97,6 +114,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "liveness",
             // normalize values to scale from 0 to 1
             value: +data[i].liveness/d3.max(data, function(d){
@@ -104,6 +123,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "valence",
             // normalize values to scale from 0 to 1
             value: +data[i].valence/d3.max(data, function(d){
@@ -111,6 +132,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "tempo",
             // normalize values to scale from 0 to 1
             value: +data[i].tempo/d3.max(data, function(d) {
@@ -118,6 +141,8 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
             })
          },
          {
+            title: data[i].name,
+            artist: data[i].artists,
             axis: "duration_ms",
             // normalize values to scale from 0 to 1
             value: +data[i].duration_ms/d3.max(data, function(d) {
@@ -128,6 +153,7 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
       newArray.push(entry)
    }
    convertedData = newArray
+   console.log(newArray)
 
    /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
 
