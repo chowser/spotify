@@ -1,5 +1,6 @@
 <!--
 http://alangrafu.github.io/radar-chart-d3/csv2radar.html
+http://bl.ocks.org/nbremer/21746a9668ffdf6d8242
 -->
 <!doctype html>
 <html lang="en">
@@ -32,25 +33,101 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
    data = data.map(function(d){
       return d
    })
+   console.log(d3.max(data, function(d) { return +d.danceability} ))
    var row
    var newArray = []
+
    for(i=0;i<5;i++){
+console.log(+data[i].danceability/d3.max(data, function(d) { return +d.danceability}))
       entry = [
-            {axis: "danceability",value: +data[i].danceability/d3.max(data,function(d){ return d.danceability })},
-            {axis: "energy",value: +data[i].energy/d3.max(data,function(d){ return d.energy })},
-            {axis: "key",value: +data[i].key/d3.max(data,function(d){ return d.key })},
-            {axis: "loudness",value: -data[i].loudness/d3.max(data,function(d){ return -d.loudness })},
-            {axis: "mode",value: +data[i].mode/d3.max(data,function(d){ return d.mode })},
-            {axis: "speechiness",value: +data[i].speechiness/d3.max(data,function(d){ return d.speechiness })},
-            {axis: "acousticness",value: +data[i].acousticness/d3.max(data,function(d){ return d.acousticness })},
-            {axis: "instrumentalness",value: +data[i].instrumentalness/d3.max(data,function(d){ return d.instrumentalness })},
-            {axis: "liveness",value: +data[i].liveness/d3.max(data,function(d){ return d.liveness })},
-            {axis: "valence",value: +data[i].valence/d3.max(data,function(d){ return d.valence })},
-            {axis: "tempo",value: +data[i].tempo/d3.max(data,function(d){ return d.tempo })},
-            {axis: "duration_ms",value: +data[i].duration_ms/d3.max(data,function(d){ return d.duration_ms })}
-         ]
-         newArray.push(entry)
-      }
+         {
+            axis: "danceability",
+            // normalize values to scale from 0 to 1
+            value: +data[i].danceability/d3.max(data, function(d) {
+               return +d.danceability
+            })
+         },
+         {
+            axis: "energy",
+            // normalize values to scale from 0 to 1
+            value: +data[i].energy/d3.max(data, function(d){
+               return +d.energy
+            })
+         },
+         {
+            axis: "key",
+            // normalize values to scale from 0 to 1
+            value: +data[i].key/d3.max(data, function(d){
+               return +d.key
+            })
+         },
+         {
+            axis: "loudness",
+            // normalize values to scale from 0 to 1
+            // loudness is negative, convert to positive
+            value: -data[i].loudness/d3.max(data, function(d){
+               return -d.loudness
+            })
+         },
+         {
+            axis: "mode",
+            // normalize values to scale from 0 to 1
+            value: +data[i].mode/d3.max(data, function(d){
+               return +d.mode
+            })
+         },
+         {
+            axis: "speechiness",
+            // normalize values to scale from 0 to 1
+            value: +data[i].speechiness/d3.max(data, function(d){
+               return +d.speechiness
+            })
+         },
+         {
+            axis: "acousticness",
+            // normalize values to scale from 0 to 1
+            value: +data[i].acousticness/d3.max(data, function(d){
+               return +d.acousticness
+            })
+         },
+         {
+            axis: "instrumentalness",
+            // normalize values to scale from 0 to 1
+            value: +data[i].instrumentalness/d3.max(data, function(d){
+               return +d.instrumentalness
+            })
+         },
+         {
+            axis: "liveness",
+            // normalize values to scale from 0 to 1
+            value: +data[i].liveness/d3.max(data, function(d){
+               return +d.liveness
+            })
+         },
+         {
+            axis: "valence",
+            // normalize values to scale from 0 to 1
+            value: +data[i].valence/d3.max(data, function(d){
+               return +d.valence
+            })
+         },
+         {
+            axis: "tempo",
+            // normalize values to scale from 0 to 1
+            value: +data[i].tempo/d3.max(data, function(d) {
+               return +d.tempo
+            })
+         },
+         {
+            axis: "duration_ms",
+            // normalize values to scale from 0 to 1
+            value: +data[i].duration_ms/d3.max(data, function(d) {
+               return +d.duration_ms
+            })
+         },
+      ]
+      newArray.push(entry)
+   }
       console.log(newArray)
       convertedData = newArray
 //convertedData = Object.entries(convertedData)
