@@ -130,7 +130,9 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
       newArray.push(row)
    }
    convertedData = newArray.splice(0,5)
-   convertedData = [convertedData]
+   convertedData = Object.entries(convertedData)
+   console.log(convertedData)
+
 
    /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
 
