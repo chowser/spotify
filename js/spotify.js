@@ -1,4 +1,3 @@
-<script type="text/javascript">
 var w = 500,
 	 h = 500
 var convertedData = {}
