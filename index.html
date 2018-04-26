@@ -1,41 +1,32 @@
 <!--
+general references:
 http://alangrafu.github.io/radar-chart-d3/csv2radar.html
 http://bl.ocks.org/nbremer/21746a9668ffdf6d8242
+
+main reference:
+https://www.visualcinnamon.com/2015/10/different-look-d3-radar-chart.html
 -->
 <!doctype html>
-<html lang="en">
 <head>
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-   <title>Hello, world!</title>
-
-   <!-- Google fonts -->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-
-   <!-- D3.js -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-   <script src="radarChart.js"></script>
+<title>Top Spotify Tracks 2017</title>
+<link
+rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="radarChart.js"></script>
 </head>
+
 <body>
    <div class="radarChart"></div>
 </body>
-
-<!-- d3 code-->
 
 <script type="text/javascript">
 var w = 500,
 	 h = 500;
 var convertedData = {}
+
+// load csv data
 d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
-   data = data.map(function(d){
-      return d
-   })
    var row
    var newArray = []
 
@@ -155,27 +146,14 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
       newArray.push(entry)
    }
    convertedData = newArray
-   console.log(newArray)
 
-   /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
-
-   //////////////////////////////////////////////////////////////
-   //////////////////////// Set-Up //////////////////////////////
-   //////////////////////////////////////////////////////////////
-
+   // radar chart design created by Nadieh Bremer - visualcinnamon.com
    var margin = {top: 100, right: 100, bottom: 100, left: 100},
    width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
-   height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+   height = Math.min(width, window.innerHeight
+      - margin.top - margin.bottom - 20);
 
-   //////////////////////////////////////////////////////////////
-   ////////////////////////// Data //////////////////////////////
-   //////////////////////////////////////////////////////////////
-
-
-   //////////////////////////////////////////////////////////////
-   //////////////////// Draw the Chart //////////////////////////
-   //////////////////////////////////////////////////////////////
-
+   // chart setup
    var color = d3.scale.ordinal()
    .range(["#EDC951","#CC333F","#00A0B0"]);
 
@@ -187,12 +165,10 @@ d3.csv("data/top_spotify_tracks_2017.csv", function(data) {
       levels: 5,
       roundStrokes: true,
       color: color
-   };
-   //Call function to draw the Radar chart
+   }
 
+   // draw the chart
    RadarChart(".radarChart", convertedData, radarChartOptions);
 }) // end d3.csv()
-
 </script>
-
 </html>
